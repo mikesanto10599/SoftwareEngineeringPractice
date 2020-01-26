@@ -25,11 +25,19 @@ class BankAccountTest {
     void isEmailValidTest(){
         assertTrue(BankAccount.isEmailValid( "a@b.com"));
         assertFalse( BankAccount.isEmailValid(""));
+        //last portion of domain less than 2 characters
         assertFalse(BankAccount.isEmailValid("fj32@gmail.o"));
+        //underscore not followed by a letter or number
         assertFalse(BankAccount.isEmailValid("j32_@gmail.com"));
+        //period not followed by a letter or number
         assertFalse(BankAccount.isEmailValid("jdfn.@fsj.tu"));
+        //dash not followed by a number or letter
         assertFalse(BankAccount.isEmailValid("fdsfd-@rti.com"));
+        //dash not followed by a number or letter
+        assertFalse(BankAccount.isEmailValid("fdsfd-.fdgd@rti.com"));
+        //invalid character in prefix
         assertFalse(BankAccount.isEmailValid("fdh!bfd@gmail.com"));
+        //doesn't start with number or letter
         assertFalse(BankAccount.isEmailValid(".ksk@hotmail.com"));
     }
 
