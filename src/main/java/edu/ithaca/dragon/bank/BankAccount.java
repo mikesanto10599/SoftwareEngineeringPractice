@@ -34,13 +34,51 @@ public class BankAccount {
 
     }
 
-
+//what I edited to help make your tests pass
     public static boolean isEmailValid(String email){
         if (email.indexOf('@') == -1){
             return false;
         }
-        else {
-            return true;
+        //make sure email doesn't start with or end with '.' or '@'
+        if (email.indexOf('@') == 0 || email.indexOf('@') == email.length()-1){
+            return false;
         }
+        if (email.indexOf('.') == 0 || email.indexOf('.') == -1){
+            return false;
+        }
+        //make sure there's a '.' where it needs to be
+        if (email.indexOf('.') == (email.length()-1) || email.indexOf('.') == (email.length()-2)){
+            return false;
+        }
+        if (email.indexOf('.') != (email.length()-4)){
+            return false;
+        }
+        //no '..'
+        if (email.charAt(email.indexOf('.')+1) == '.'){
+            return false;
+        }
+        //make sure no consecutive symbols
+        if (email.indexOf('.') != (email.indexOf('@')-1) || email.indexOf('.') != (email.indexOf('@')+1)){
+            return false;
+        }
+        if (email.indexOf('.') != (email.indexOf('-')-1) || email.indexOf('.') != (email.indexOf('-')+1)){
+            return false;
+        }
+        if (email.indexOf('-') != (email.indexOf('@')-1) || email.indexOf('-') != (email.indexOf('@')+1)){
+            return false;
+        }
+        //make sure email doesn't start or ends with a symbol
+        if(email.startsWith("!") || email.startsWith("#") || email.startsWith("/") || email.startsWith("-")){
+            return false;
+        }
+        if(email.endsWith("!") || email.endsWith("#") || email.endsWith("/") ||  email.endsWith("-")){
+            return false;
+        }
+        //make sure email has proper ending to domain
+        if(email.endsWith(".com") == false || email.endsWith(".org") == false || email.endsWith(".edu") == false || email.endsWith(".gov") == false){
+            return false;
+        }
+
+        return true;
     }
 }
