@@ -35,116 +35,121 @@ public class BankAccount {
     }
 
 //what I edited to help make your tests pass (re-edited and should work now)
-public static boolean isEmailValid(String email){
-    int length = email.length();
-    //make sures these two symbols are in the email address
-    if (email.indexOf('@') == -1){
-        return false;
+    public static boolean isEmailValid(String email){
+        int length = email.length();
+        //make sures these two symbols are in the email address
+        if (email.indexOf('@') == -1){
+            return false;
+        }
+        if (email.indexOf('.') == -1){
+            return false;
+        }
+        //invalid
+        if (email.indexOf('!') != -1 || email.indexOf('#') != -1 || email.indexOf('$') != -1 || email.indexOf('%') != -1){
+            return false;
+        }
+
+        //checks to see if email starts or ends with symbols
+        if(email.charAt(0) == '@' || email.charAt(0) == '.' || email.charAt(0) == '#' || email.charAt(0) == '-' || email.charAt(0) == '_' || email.charAt(0) == '!'){
+            return false;
+        }
+        if(email.charAt(length-1) == '@' || email.charAt(length-1) == '.' || email.charAt(length-1) == '#' || email.charAt(length-1) == '-' || email.charAt(length-1) == '_'){
+            return false;
+        }
+        //checks double symbols
+        if (email.indexOf('.')!=-1){
+            int idx = email.indexOf('.');
+            if (email.indexOf('.') == idx+1 || email.indexOf('.') == idx-1){
+                return false;
+            }
+            if (email.indexOf('@') == idx+1 || email.indexOf('@') == idx-1){
+                return false;
+            }
+            if (email.indexOf('#') == idx+1 || email.indexOf('#') == idx-1){
+                return false;
+            }
+            if (email.indexOf('-') == idx+1 || email.indexOf('-') == idx-1){
+                return false;
+            }
+            if (email.indexOf('_') == idx+1 || email.indexOf('_') == idx-1){
+                return false;
+            }
+        }
+        if (email.indexOf('#')!=-1){
+            int idx = email.indexOf('#');
+            if (email.indexOf('.') == idx+1 || email.indexOf('.') == idx-1){
+                return false;
+            }
+            if (email.indexOf('@') == idx+1 || email.indexOf('@') == idx-1){
+                return false;
+            }
+            if (email.indexOf('#') == idx+1 || email.indexOf('#') == idx-1){
+                return false;
+            }
+            if (email.indexOf('-') == idx+1 || email.indexOf('-') == idx-1){
+                return false;
+            }
+            if (email.indexOf('_') == idx+1 || email.indexOf('_') == idx-1){
+                return false;
+            }
+        }
+        if (email.indexOf('@')!=-1){
+            int idx = email.indexOf('@');
+            if (email.indexOf('@') == idx+1 || email.indexOf('.') == idx-1){
+                return false;
+            }
+            if (email.indexOf('@') == idx+1 || email.indexOf('@') == idx-1){
+                return false;
+            }
+            if (email.indexOf('#') == idx+1 || email.indexOf('#') == idx-1){
+                return false;
+            }
+            if (email.indexOf('-') == idx+1 || email.indexOf('-') == idx-1){
+                return false;
+            }
+            if (email.indexOf('_') == idx+1 || email.indexOf('_') == idx-1){
+                return false;
+            }
+        }
+        if (email.indexOf('-')!=-1){
+            int idx = email.indexOf('-');
+            if (email.indexOf('-') == idx+1 || email.indexOf('.') == idx-1){
+                return false;
+            }
+            if (email.indexOf('@') == idx+1 || email.indexOf('@') == idx-1){
+                return false;
+            }
+            if (email.indexOf('#') == idx+1 || email.indexOf('#') == idx-1){
+                return false;
+            }
+            if (email.indexOf('-') == idx+1 || email.indexOf('-') == idx-1){
+                return false;
+            }
+            if (email.indexOf('_') == idx+1 || email.indexOf('_') == idx-1){
+                return false;
+            }
+        }
+        if (email.indexOf('_')!=-1){
+            int idx = email.indexOf('_');
+            if (email.indexOf('_') == idx+1 || email.indexOf('.') == idx-1){
+                return false;
+            }
+            if (email.indexOf('@') == idx+1 || email.indexOf('@') == idx-1){
+                return false;
+            }
+            if (email.indexOf('#') == idx+1 || email.indexOf('#') == idx-1){
+                return false;
+            }
+            if (email.indexOf('-') == idx+1 || email.indexOf('-') == idx-1){
+                return false;
+            }
+            if (email.indexOf('_') == idx+1 || email.indexOf('_') == idx-1){
+                return false;
+            }
+        }
+        if(email.indexOf('.') > length-3 ){
+            return false;
+        }
+        return true;
     }
-    if (email.indexOf('.') == -1){
-        return false;
-    }
-    //checks to see if email starts or ends with symbols
-    if(email.charAt(0) == '@' || email.charAt(0) == '.' || email.charAt(0) == '#' || email.charAt(0) == '-' || email.charAt(0) == '_' || email.charAt(0) == '!'){
-        return false;
-    }
-    if(email.charAt(length-1) == '@' || email.charAt(length-1) == '.' || email.charAt(length-1) == '#' || email.charAt(length-1) == '-' || email.charAt(length-1) == '_'){
-        return false;
-    }
-    //checks double symbols
-    if (email.indexOf('.')!=-1){
-        int idx = email.indexOf('.');
-        if (email.indexOf('.') == idx+1 || email.indexOf('.') == idx-1){
-            return false;
-        }
-        if (email.indexOf('@') == idx+1 || email.indexOf('@') == idx-1){
-            return false;
-        }
-        if (email.indexOf('#') == idx+1 || email.indexOf('#') == idx-1){
-            return false;
-        }
-        if (email.indexOf('-') == idx+1 || email.indexOf('-') == idx-1){
-            return false;
-        }
-        if (email.indexOf('_') == idx+1 || email.indexOf('_') == idx-1){
-            return false;
-        }
-    }
-    if (email.indexOf('#')!=-1){
-        int idx = email.indexOf('.');
-        if (email.indexOf('.') == idx+1 || email.indexOf('.') == idx-1){
-            return false;
-        }
-        if (email.indexOf('@') == idx+1 || email.indexOf('@') == idx-1){
-            return false;
-        }
-        if (email.indexOf('#') == idx+1 || email.indexOf('#') == idx-1){
-            return false;
-        }
-        if (email.indexOf('-') == idx+1 || email.indexOf('-') == idx-1){
-            return false;
-        }
-        if (email.indexOf('_') == idx+1 || email.indexOf('_') == idx-1){
-            return false;
-        }
-    }
-    if (email.indexOf('@')!=-1){
-        int idx = email.indexOf('@');
-        if (email.indexOf('@') == idx+1 || email.indexOf('.') == idx-1){
-            return false;
-        }
-        if (email.indexOf('@') == idx+1 || email.indexOf('@') == idx-1){
-            return false;
-        }
-        if (email.indexOf('#') == idx+1 || email.indexOf('#') == idx-1){
-            return false;
-        }
-        if (email.indexOf('-') == idx+1 || email.indexOf('-') == idx-1){
-            return false;
-        }
-        if (email.indexOf('_') == idx+1 || email.indexOf('_') == idx-1){
-            return false;
-        }
-    }
-    if (email.indexOf('-')!=-1){
-        int idx = email.indexOf('-');
-        if (email.indexOf('-') == idx+1 || email.indexOf('.') == idx-1){
-            return false;
-        }
-        if (email.indexOf('@') == idx+1 || email.indexOf('@') == idx-1){
-            return false;
-        }
-        if (email.indexOf('#') == idx+1 || email.indexOf('#') == idx-1){
-            return false;
-        }
-        if (email.indexOf('-') == idx+1 || email.indexOf('-') == idx-1){
-            return false;
-        }
-        if (email.indexOf('_') == idx+1 || email.indexOf('_') == idx-1){
-            return false;
-        }
-    }
-    if (email.indexOf('_')!=-1){
-        int idx = email.indexOf('_');
-        if (email.indexOf('_') == idx+1 || email.indexOf('.') == idx-1){
-            return false;
-        }
-        if (email.indexOf('@') == idx+1 || email.indexOf('@') == idx-1){
-            return false;
-        }
-        if (email.indexOf('#') == idx+1 || email.indexOf('#') == idx-1){
-            return false;
-        }
-        if (email.indexOf('-') == idx+1 || email.indexOf('-') == idx-1){
-            return false;
-        }
-        if (email.indexOf('_') == idx+1 || email.indexOf('_') == idx-1){
-            return false;
-        }
-    }
-    if(email.indexOf('.') > length-3 ){
-        return false;
-    }
-    return true;
-}
 }
