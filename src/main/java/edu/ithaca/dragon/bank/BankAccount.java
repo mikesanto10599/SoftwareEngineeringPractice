@@ -45,7 +45,7 @@ public static boolean isEmailValid(String email){
         return false;
     }
     //checks to see if email starts or ends with symbols
-    if(email.charAt(0) == '@' || email.charAt(0) == '.' || email.charAt(0) == '#' || email.charAt(0) == '-' || email.charAt(0) == '_'){
+    if(email.charAt(0) == '@' || email.charAt(0) == '.' || email.charAt(0) == '#' || email.charAt(0) == '-' || email.charAt(0) == '_' || email.charAt(0) == '!'){
         return false;
     }
     if(email.charAt(length-1) == '@' || email.charAt(length-1) == '.' || email.charAt(length-1) == '#' || email.charAt(length-1) == '-' || email.charAt(length-1) == '_'){
@@ -89,8 +89,8 @@ public static boolean isEmailValid(String email){
         }
     }
     if (email.indexOf('@')!=-1){
-        int idx = email.indexOf('.');
-        if (email.indexOf('.') == idx+1 || email.indexOf('.') == idx-1){
+        int idx = email.indexOf('@');
+        if (email.indexOf('@') == idx+1 || email.indexOf('.') == idx-1){
             return false;
         }
         if (email.indexOf('@') == idx+1 || email.indexOf('@') == idx-1){
@@ -107,8 +107,8 @@ public static boolean isEmailValid(String email){
         }
     }
     if (email.indexOf('-')!=-1){
-        int idx = email.indexOf('.');
-        if (email.indexOf('.') == idx+1 || email.indexOf('.') == idx-1){
+        int idx = email.indexOf('-');
+        if (email.indexOf('-') == idx+1 || email.indexOf('.') == idx-1){
             return false;
         }
         if (email.indexOf('@') == idx+1 || email.indexOf('@') == idx-1){
@@ -125,8 +125,8 @@ public static boolean isEmailValid(String email){
         }
     }
     if (email.indexOf('_')!=-1){
-        int idx = email.indexOf('.');
-        if (email.indexOf('.') == idx+1 || email.indexOf('.') == idx-1){
+        int idx = email.indexOf('_');
+        if (email.indexOf('_') == idx+1 || email.indexOf('.') == idx-1){
             return false;
         }
         if (email.indexOf('@') == idx+1 || email.indexOf('@') == idx-1){
