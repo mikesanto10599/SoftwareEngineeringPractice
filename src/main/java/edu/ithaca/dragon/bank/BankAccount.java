@@ -1,5 +1,7 @@
 package edu.ithaca.dragon.bank;
 
+import java.security.InvalidParameterException;
+
 public class BankAccount {
 
     private String email;
@@ -30,8 +32,16 @@ public class BankAccount {
      * @post reduces the balance by amount if amount is non-negative and smaller than balance
      */
     public void withdraw (double amount)  {
-        balance -= amount;
-
+        if (balance > 0) {
+            if (amount < balance) {
+                balance -= amount;
+            }
+            else{
+                throw new IllegalArgumentException("Not enough cash in your balance to withdraw $" + amount);
+            }
+        }
+        else {
+        }
     }
 
 //what I edited to help make your tests pass (re-edited and should work now)
@@ -144,6 +154,35 @@ public class BankAccount {
                 return false;
             }
             if (email.charAt(idx+1) == email.charAt(idx) || email.charAt(idx-1) == email.charAt(idx)){
+                return false;
+            }
+        }
+
+        //makes sure there's no invalid symbol after @
+        int idx = email.indexOf('@');
+        for (int i = idx+1; i < length; i++){
+            if (email.charAt(i) == '@'){
+                return false;
+            }
+            else if (email.charAt(i) == '_'){
+                return false;
+            }
+            else if (email.charAt(i) == '#'){
+                return false;
+            }
+            else if (email.charAt(i) == '!'){
+                return false;
+            }
+            else if (email.charAt(i) == '$'){
+                return false;
+            }
+            else if (email.charAt(i) == '%'){
+                return false;
+            }
+        }
+        //make sures there's only 1 @
+        for (int j = idx-1; j > -1; j--) {
+            if (email.charAt(j) == '@'){
                 return false;
             }
         }
