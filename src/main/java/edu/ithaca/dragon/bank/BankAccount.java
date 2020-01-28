@@ -31,16 +31,20 @@ public class BankAccount {
     /**
      * @post reduces the balance by amount if amount is non-negative and smaller than balance
      */
-    public void withdraw (double amount)  {
+    public void withdraw (double amount) throws InsufficientFundsException {
         if (balance > 0) {
-            if (amount < balance) {
+            if (amount < balance && amount > 1) {
                 balance -= amount;
+            }
+            else if (amount > 0 && amount < 1){
+                throw new IllegalArgumentException("insufficient amount to withdraw");
             }
             else{
                 throw new IllegalArgumentException("Not enough cash in your balance to withdraw $" + amount);
             }
         }
         else {
+            throw new InsufficientFundsException("not enough in your balance to withdraw $" + amount);
         }
     }
 
@@ -186,7 +190,17 @@ public class BankAccount {
                 return false;
             }
         }
-        if(email.indexOf('.') >= length-3 ){
+
+        int count = 0;
+        for (int k = idx+1; k < length; k ++){
+            if (email.charAt(k)== '.'){
+                count ++;
+            }
+            if (count > 1){
+                return false;
+            }
+        }
+        if(email.indexOf('.') > length-3 ){
             return false;
         }
         return true;
