@@ -40,6 +40,42 @@ class BankAccountTest {
         assertFalse(BankAccount.isEmailValid("fdh!bfd@gmail.com"));
         //doesn't start with number or letter
         assertFalse(BankAccount.isEmailValid(".ksk@hotmail.com"));
+
+        //Symbol followed by non-letter or non-number
+        assertFalse(BankAccount.isEmailValid("djs@$@gmail.com"));
+        assertFalse(BankAccount.isEmailValid("df-.ds@dfm.eo"));
+        assertTrue(BankAccount.isEmailValid("da.s.e.@hotmail.com"));
+        assertFalse(BankAccount.isEmailValid("gh--dfa@gds.tr"));
+
+        //invalid characters
+        assertFalse(BankAccount.isEmailValid("djak#dk@dl.cc"));
+        assertFalse(BankAccount.isEmailValid("djakdk@d!l.cc"));
+        assertFalse(BankAccount.isEmailValid("dja$dk@dl.cc"));
+        assertFalse(BankAccount.isEmailValid("dj%dk@dl.cc"));
+        assertFalse(BankAccount.isEmailValid("djadk@dl.c!c"));
+
+        //Prefix must start with number or letter
+        assertFalse(BankAccount.isEmailValid(".fdsf@gmail.com"));
+        assertFalse(BankAccount.isEmailValid("-fdsf@gmail.com"));
+        assertFalse(BankAccount.isEmailValid("_fdsf@gmail.com"));
+        assertTrue(BankAccount.isEmailValid("fdsf@gmail.com"));
+        assertTrue(BankAccount.isEmailValid("32jfl2@gmail.com"));
+
+        //Only dashes allowed in suffix
+        assertTrue(BankAccount.isEmailValid("hello_world@dj-fs.co"));
+        assertTrue(BankAccount.isEmailValid("fdja@dd.c-o"));
+        assertFalse(BankAccount.isEmailValid("dsa@df.fd.oew"));
+        assertFalse(BankAccount.isEmailValid("dsa@df_d-fd.oew"));
+
+        //The last portion of the domain must be at least two characters
+        assertFalse(BankAccount.isEmailValid("dsa@fad.o"));
+        assertFalse(BankAccount.isEmailValid("dsa@fad."));
+        assertTrue(BankAccount.isEmailValid("dsa@fad.fd"));
+        assertTrue(BankAccount.isEmailValid("dsa@fad.ff-d-s-f-d-sd"));
+
+
+
+
     }
 
     @Test
