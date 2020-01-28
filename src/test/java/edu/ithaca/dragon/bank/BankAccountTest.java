@@ -44,7 +44,7 @@ class BankAccountTest {
         //Symbol followed by non-letter or non-number
         assertFalse(BankAccount.isEmailValid("djs@$@gmail.com"));
         assertFalse(BankAccount.isEmailValid("df-.ds@dfm.eo"));
-        assertTrue(BankAccount.isEmailValid("da.s.e.@hotmail.com"));
+        assertTrue(BankAccount.isEmailValid("da.s.e.4@hotmail.com"));
         assertFalse(BankAccount.isEmailValid("gh--dfa@gds.tr"));
 
         //invalid characters
