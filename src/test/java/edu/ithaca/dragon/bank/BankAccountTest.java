@@ -13,14 +13,44 @@ class BankAccountTest {
         assertEquals(200, bankAccount.getBalance());
     }
 
-    /*@Test
+    @Test
     void withdrawTest() {
-        BankAccount bankAccount = new BankAccount("a@b.com", 200);
+        BankAccount bankAccount1 = new BankAccount("a@b.com", 300);
+        BankAccount bankAccount2 = new BankAccount("c@d.com", 500);
 
-        bankAccount.withdraw(100);
-        assertEquals(100, bankAccount.getBalance());
-
-    }*/
+        //Non-Negative
+        bankAccount1.withdraw(0.01);
+        assertEquals(299.99, bankAccount1.getBalance(), 0.0001);
+        bankAccount1.withdraw(200);
+        assertEquals(99.99, bankAccount1.getBalance(), 0.0001);
+        bankAccount1.withdraw(0);
+        assertEquals(99.99,bankAccount1.getBalance(), 0.0001);
+        //assertEquals(InsufficientFundsException.class, bankAccount1.withdraw(100));
+        bankAccount1.withdraw(99.99);
+        assertEquals(0.00,bankAccount1.getBalance(),0.0001);
+        //Smaller than balance
+        bankAccount2.withdraw(0.01);
+        assertEquals(499.99,bankAccount2.getBalance(),0.0001);
+        bankAccount2.withdraw(0);
+        assertEquals(499.99,bankAccount2.getBalance(),0.0001);
+        bankAccount2.withdraw(200);
+        assertEquals(299.99,bankAccount2.getBalance(),0.0001);
+        bankAccount2.withdraw(299.98);
+        assertEquals(0.01,bankAccount2.getBalance(),0.0001);
+        //Negative value
+        //assertEquals(IllegalArgumentException.class,bankAccount2.withdraw(-499.99));
+        //assertEquals(IllegalArgumentException.class,bankAccount2.withdraw(-200));
+        //assertEquals(IllegalArgumentException.class,bankAccount2.withdraw(-0.01));
+        //Larger than balance
+        //assertEquals(InsufficientFundsException.class, bankAccount2.withdraw(0.02));
+        //assertEquals(InsufficientFundsException.class, bankAccount2.withdraw(1));
+        //assertEquals(InsufficientFundsException.class, bankAccount2.withdraw(300));
+        //assertEquals(InsufficientFundsException.class, bankAccount2.withdraw(500));
+        //more than 2 decimal places in withdraw value
+        //assertEquals(IllegalArgumentException.class, bankAccount2.withdraw(0.001));
+        //assertEquals(IllegalArgumentException.class, bankAccount2.withdraw(0.0013233));
+        //assertEquals(IllegalArgumentException.class, bankAccount2.withdraw(0.000000000000000000000000000000000001));
+    }
 
     @Test
     void isEmailValidTest(){
