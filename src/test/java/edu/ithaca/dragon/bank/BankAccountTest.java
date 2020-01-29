@@ -25,7 +25,7 @@ class BankAccountTest {
         assertEquals(99.99, bankAccount1.getBalance(), 0.0001);
         bankAccount1.withdraw(0);
         assertEquals(99.99,bankAccount1.getBalance(), 0.0001);
-        //assertEquals(InsufficientFundsException.class, bankAccount1.withdraw(100));
+        assertThrows(InsufficientFundsException.class, ()-> bankAccount1.withdraw(100));
         bankAccount1.withdraw(99.99);
         assertEquals(0.00,bankAccount1.getBalance(),0.0001);
         //Smaller than balance
@@ -38,18 +38,18 @@ class BankAccountTest {
         bankAccount2.withdraw(299.98);
         assertEquals(0.01,bankAccount2.getBalance(),0.0001);
         //Negative value
-        //assertEquals(IllegalArgumentException.class,bankAccount2.withdraw(-499.99));
-        //assertEquals(IllegalArgumentException.class,bankAccount2.withdraw(-200));
-        //assertEquals(IllegalArgumentException.class,bankAccount2.withdraw(-0.01));
+        assertThrows(IllegalArgumentException.class, ()-> bankAccount2.withdraw(-499.99));
+        assertThrows(IllegalArgumentException.class, ()-> bankAccount2.withdraw(-200));
+        assertThrows(IllegalArgumentException.class, ()-> bankAccount2.withdraw(-0.01));
         //Larger than balance
-        //assertEquals(InsufficientFundsException.class, bankAccount2.withdraw(0.02));
-        //assertEquals(InsufficientFundsException.class, bankAccount2.withdraw(1));
-        //assertEquals(InsufficientFundsException.class, bankAccount2.withdraw(300));
-        //assertEquals(InsufficientFundsException.class, bankAccount2.withdraw(500));
+        assertThrows(InsufficientFundsException.class, ()-> bankAccount2.withdraw(0.02));
+        assertThrows(InsufficientFundsException.class, ()-> bankAccount2.withdraw(1));
+        assertThrows(InsufficientFundsException.class, ()-> bankAccount2.withdraw(300));
+        assertThrows(InsufficientFundsException.class, ()-> bankAccount2.withdraw(500));
         //more than 2 decimal places in withdraw value
-        //assertEquals(IllegalArgumentException.class, bankAccount2.withdraw(0.001));
-        //assertEquals(IllegalArgumentException.class, bankAccount2.withdraw(0.0013233));
-        //assertEquals(IllegalArgumentException.class, bankAccount2.withdraw(0.000000000000000000000000000000000001));
+        assertThrows(IllegalArgumentException.class, ()-> bankAccount2.withdraw(0.001));
+        assertThrows(IllegalArgumentException.class, ()-> bankAccount2.withdraw(0.0013233));
+        assertThrows(IllegalArgumentException.class, ()-> bankAccount2.withdraw(0.000000000000000000000000000000000001));
     }
 
     @Test
