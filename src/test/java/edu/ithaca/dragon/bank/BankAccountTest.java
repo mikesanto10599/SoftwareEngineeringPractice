@@ -14,7 +14,7 @@ class BankAccountTest {
     }
 
     @Test
-    void withdrawTest() {
+    void withdrawTest() throws InsufficientFundsException {
         BankAccount bankAccount1 = new BankAccount("a@b.com", 300);
         BankAccount bankAccount2 = new BankAccount("c@d.com", 500);
 

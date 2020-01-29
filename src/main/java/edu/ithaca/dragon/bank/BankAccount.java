@@ -34,10 +34,13 @@ public class BankAccount {
      */
     public void withdraw (double amount) throws InsufficientFundsException {
         if (balance > 0) {
-            if (amount < balance && amount > 1) {
+            if (amount < balance && amount >= .01) {
                 balance -= amount;
             }
-            else if (amount > 0 && amount < 1){
+            else if (amount == 0){
+                balance = balance;
+            }
+            else if (amount < .01){
                 throw new IllegalArgumentException("insufficient amount to withdraw");
             }
             else{
