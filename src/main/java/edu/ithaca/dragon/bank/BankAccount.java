@@ -233,4 +233,11 @@ public class BankAccount {
         return true;
     }
 
+    /**
+     * @post amount is added to balance of account
+     */
+    public void deposit(double amount){
+
+    }
+
 }

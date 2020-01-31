@@ -142,6 +142,36 @@ class BankAccountTest {
     }
 
     @Test
+    void depositTest(){
+        BankAccount bankAccount = new BankAccount("a@b.com", 0);
+        //valid values
+        bankAccount.deposit(0.01);
+        assertEquals(0.01, bankAccount.getBalance(), 0.0001);
+        bankAccount.deposit(0);
+        assertEquals(0.01, bankAccount.getBalance(), 0.0001);
+        bankAccount.deposit(5000.1);
+        assertEquals(5000.11, bankAccount.getBalance(), 0.0001);
+        bankAccount.deposit(10000000);
+        assertEquals(10005000.11, bankAccount.getBalance(), 0.0001);
+
+        //negative values
+        assertThrows(IllegalArgumentException.class, ()-> bankAccount.deposit(-0.01));
+        assertEquals(10005000.11, bankAccount.getBalance(), 0.0001);
+        assertThrows(IllegalArgumentException.class, ()-> bankAccount.deposit(-500));
+        assertEquals(10005000.11, bankAccount.getBalance(), 0.0001);
+        assertThrows(IllegalArgumentException.class, ()-> bankAccount.deposit(-5000000.1));
+        assertEquals(10005000.11, bankAccount.getBalance(), 0.0001);
+
+        //more than two decimal places
+        assertThrows(IllegalArgumentException.class, ()-> bankAccount.deposit(0.001));
+        assertEquals(10005000.11, bankAccount.getBalance(), 0.0001);
+        assertThrows(IllegalArgumentException.class, ()-> bankAccount.deposit(50.2134434));
+        assertEquals(10005000.11, bankAccount.getBalance(), 0.0001);
+        assertThrows(IllegalArgumentException.class, ()-> bankAccount.deposit(40.436278463628746832643274362648273874));
+        assertEquals(10005000.11, bankAccount.getBalance(), 0.0001);
+    }
+
+    @Test
     void constructorTest() {
         BankAccount bankAccount = new BankAccount("a@b.com", 200);
 
