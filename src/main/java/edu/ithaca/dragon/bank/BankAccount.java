@@ -248,8 +248,18 @@ public class BankAccount {
     /**
      * @post amount is withdrawn from account and deposited into accountToTransferTo
      */
-    public void transfer(double amount, BankAccount accountToTransferTo){
-
+    public void transfer(double amount, BankAccount accountToTransferTo) throws InsufficientFundsException {
+        if (this == accountToTransferTo){
+            throw new IllegalArgumentException("Cannot transfer to same account");
+        }
+        if (balance < amount){
+            throw new InsufficientFundsException("Not enough in balance to transfer");
+        }
+        if (!isAmountValid(amount)){
+            throw new IllegalArgumentException("Invalid amount");
+        }
+        this.withdraw(amount);
+        accountToTransferTo.deposit(amount);
     }
 
 }
