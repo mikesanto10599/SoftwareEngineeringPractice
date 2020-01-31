@@ -23,6 +23,30 @@ class BankAccountTest {
     }
 
     @Test
+    void isAmountValidTest(){
+        //positive
+        assertTrue(BankAccount.isAmountValid(0.00));
+        assertTrue(BankAccount.isAmountValid(500));
+        assertTrue(BankAccount.isAmountValid(9999999.99));
+        //two decimals or less
+        assertTrue(BankAccount.isAmountValid(5.30));
+        assertTrue(BankAccount.isAmountValid(50.5));
+        assertTrue(BankAccount.isAmountValid(9999999.99));
+        //negative
+        assertFalse(BankAccount.isAmountValid(-0.01));
+        assertFalse(BankAccount.isAmountValid(-500));
+        assertFalse(BankAccount.isAmountValid(-9999999.32));
+        //more than 2 decimals
+        assertFalse(BankAccount.isAmountValid(0.001));
+        assertFalse(BankAccount.isAmountValid(-0.001));
+        assertFalse(BankAccount.isAmountValid(50.37824738));
+        assertFalse(BankAccount.isAmountValid(0.001849389048290840983290489032809489032890580932750709));
+
+
+
+
+    }
+    @Test
     void withdrawTest() throws InsufficientFundsException {
         BankAccount bankAccount1 = new BankAccount("a@b.com", 300);
         BankAccount bankAccount2 = new BankAccount("c@d.com", 500);
