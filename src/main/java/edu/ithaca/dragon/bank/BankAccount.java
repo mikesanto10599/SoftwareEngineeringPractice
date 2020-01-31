@@ -245,4 +245,11 @@ public class BankAccount {
         }
     }
 
+    /**
+     * @post amount is withdrawn from account and deposited into accountToTransferTo
+     */
+    public void transfer(double amount, BankAccount accountToTransferTo){
+
+    }
+
 }

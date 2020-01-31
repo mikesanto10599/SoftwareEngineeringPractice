@@ -172,6 +172,43 @@ class BankAccountTest {
     }
 
     @Test
+    void transferTest(){
+        BankAccount bankAccount1 = new BankAccount("a@b.com", 2500);
+        BankAccount bankAccount2 = new BankAccount("c@d.com", 2500);
+
+        //valid values, sufficient balances
+        bankAccount1.transfer(1, bankAccount2);
+        assertEquals(2499, bankAccount1.getBalance(), 0.0001);
+        assertEquals(2501, bankAccount2.getBalance(), 0.0001);
+        bankAccount1.transfer(1499.99, bankAccount2);
+        assertEquals(999.01, bankAccount1.getBalance(), 0.0001);
+        assertEquals(4000.99, bankAccount2.getBalance(), 0.0001);
+        bankAccount2.transfer(1, bankAccount1);
+        assertEquals(1000.01, bankAccount1.getBalance(), 0.0001);
+        assertEquals(3999.99, bankAccount2.getBalance(), 0.0001);
+        bankAccount2.transfer(1499.99, bankAccount1);
+        assertEquals(2500, bankAccount1.getBalance(), 0.0001);
+        assertEquals(2500, bankAccount2.getBalance(), 0.0001);
+
+        //transfer to same account
+        assertThrows(IllegalArgumentException.class, ()-> bankAccount1.transfer(5, bankAccount1));
+        assertThrows(IllegalArgumentException.class, ()-> bankAccount2.transfer(5, bankAccount2));
+
+        //invalid values
+        assertThrows(IllegalArgumentException.class, ()-> bankAccount1.transfer(-5, bankAccount2));
+        assertThrows(IllegalArgumentException.class, ()-> bankAccount1.transfer(-0.05, bankAccount2));
+        assertThrows(IllegalArgumentException.class, ()-> bankAccount1.transfer(-593020, bankAccount2));
+        assertThrows(IllegalArgumentException.class, ()-> bankAccount1.transfer(5.001, bankAccount2));
+        assertThrows(IllegalArgumentException.class, ()-> bankAccount1.transfer(5.00154, bankAccount2));
+        assertThrows(IllegalArgumentException.class, ()-> bankAccount1.transfer(5.0014329874932798474839, bankAccount2));
+
+        //insufficient balance
+        assertThrows(InsufficientFundsException.class, ()-> bankAccount1.transfer(2500.01, bankAccount2));
+        assertThrows(InsufficientFundsException.class, ()-> bankAccount2.transfer(3000, bankAccount1));
+
+    }
+
+    @Test
     void constructorTest() {
         BankAccount bankAccount = new BankAccount("a@b.com", 200);
 
