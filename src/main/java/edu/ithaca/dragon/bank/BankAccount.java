@@ -40,9 +40,7 @@ public class BankAccount {
             else if (amount == 0){
                 balance = balance;
             }
-            else if (amount < .01){
-                throw new IllegalArgumentException("insufficient amount to withdraw");
-            }
+
             else if (amount > balance){
                 throw new InsufficientFundsException("your balance is less than your withdraw amount");
             }
