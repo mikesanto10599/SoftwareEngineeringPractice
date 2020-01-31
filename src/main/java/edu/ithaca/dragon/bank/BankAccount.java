@@ -237,7 +237,12 @@ public class BankAccount {
      * @post amount is added to balance of account
      */
     public void deposit(double amount){
-
+        if (isAmountValid(amount)){
+            balance += amount;
+        }
+        else{
+            throw new IllegalArgumentException("Invalid amount");
+        }
     }
 
 }
